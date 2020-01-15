@@ -1,1 +1,99 @@
 /* Commentaires */
+
+body{ 
+  display:flex; 
+  flex-direction:column; 
+}
+
+
+
+
+/* HEADER */
+ .logo_header {
+ float: left;
+ width: 50px;
+ height: 50px;
+ }
+
+.photo_profil {
+	float: right;
+	width: 50px;
+	height: 50px;
+}
+ .entete {
+  border-width: 2px
+  border-collapse: separate;
+  border: 2px solid red;
+}
+
+/* vérifier à quoi sert .conteneur */
+ .conteneur {
+ 	float: left;
+ 	margin: 0 auto;
+ 	border: 1px solid black;
+ 	padding: 5px;
+ 	box-sizing: border-box;
+ }
+
+ /*Présentation */ 
+
+h1 {
+	text-align: center;
+}
+
+.logo_presentation {
+text-align: center;
+width:150px;
+height:150px;
+}
+
+#logo_presentation_p {
+	text-align: center;
+}
+
+#text_presentation{
+	text-align: center;
+}
+
+
+
+#barre_presentation {
+	border-bottom: 2px solid red
+}
+
+/* Acteurs */
+
+h2 {
+	text-align: center;
+}
+
+table {
+  border-collapse: separate;
+  border: 2px solid red;
+}
+
+
+
+td {
+  border: 2px solid red;
+  padding: 5px;
+}
+
+
+.acteurs_encadrement {
+  border-spacing: 10px 10px;
+}
+
+
+#text_acteurs {
+	text-align: center;
+}
+
+.logo_acteurs {
+	float: left;
+	width:100px;
+	height:100px;
+}
+
+/* footer */
+
