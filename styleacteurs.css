@@ -113,3 +113,9 @@ display: inline;
  margin-left: 5px;
  text-align: center;
 }
+
+/* Mentions légales */
+
+h1 {
+	text-align: center;
+}
