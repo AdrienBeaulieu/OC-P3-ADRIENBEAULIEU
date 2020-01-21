@@ -11,7 +11,7 @@
 			
 		<header class="ntete">
 			
-			<p><a href="Pageprincipal.html"><img class="logo_header" src="logogbaf.png" alt="Logo GBAF"></a></p>
+			<p><a href="Pageprincipal.php"><img class="logo_header" src="logogbaf.png" alt="Logo GBAF"></a></p>
 			<p> <img class="photo_profil" src="imageprofile.png" alt="Photo de profil"></p> 
 			<div class="nom_prenom"> Nom & Prénom </div>
 			<hr class="barre_header" color="grey">
@@ -31,7 +31,7 @@
 	    <h2>Voici nos acteurs et partenaires</h2>
 		<p id="text_acteurs">Texte acteurs et partenaires</p>	
 
-
+		<?php echo "bonjour"; ?>
 		 <!-- Début section regrouprement Acteurs -->
 
 
@@ -42,7 +42,7 @@
 			<img class="logo_acteurs" src="CDE.png" alt="Logo CDE">
 			<h3>CDE</h3>
 				<p>La CDE (Chambre Des Entrepreneurs) accompagne les..
-					<a href="CDE.html">Lire la suite</a>
+					<a href="CDE.php">Lire la suite</a>
 				</p>
 		</div>
 		<br />
@@ -52,7 +52,7 @@
 			<img class="logo_acteurs" src="Dsa_france.png" alt="Logo Dsa_france">
 			<h3>DSA France</h3>
 				<p>Dsa France accélère la croissance du territoire et..
-					<a href="Acteur2.html">Lire la suite</a>
+					<a href="Acteur2.php">Lire la suite</a>
 				</p>
 		</div>
 		<br />
@@ -62,7 +62,7 @@
 			<img class="logo_acteurs" src="formation_co.png" alt="logo formation_co">
 			<h3>Formation And Co</h3>
 				<p>Formation&co est une association française présente sur..
-					<a href="Acteur3.html">Lire la suite</a>
+					<a href="Acteur3.php">Lire la suite</a>
 				</p>
 		</div>
 		<br />		
@@ -73,7 +73,7 @@
 			<img class="logo_acteurs" src="protectpeople.png" alt="logo protectpeople"> 
 			<h3>Protect people</h3>
 				<p>Protectpeople finance la solidarité nationale..
-					<a href="Acteur4.html">Lire la suite</a> 
+					<a href="Acteur4.php">Lire la suite</a> 
 				</p>
 		</div>
 
@@ -85,9 +85,9 @@
 <!-- Footer -->
 		<footer>
 			<ul>	
-				<li><a href="ML.html">Mentions légales</a></li>
+				<li><a href="ML.php">Mentions légales</a></li>
 				<li> | </li>
-				<li><a href="Contact.html">Contact</a></li>
+				<li><a href="Contact.php">Contact</a></li>
 			</ul>	
 			
 		</footer>
