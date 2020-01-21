@@ -81,7 +81,7 @@ h3 {
 }
 
 .encadrement_acteurs {
-	width: 1000px;
+	idth: 1000px;
 	padding-top: 5px;
 	padding-bottom: 5px;
 	border: 2px solid grey;
@@ -89,6 +89,7 @@ h3 {
 	ackground: grey;
 	border-spacing: 5px;
 	margin: 0 auto;
+	width: 95%.
 
 }
 
@@ -97,6 +98,7 @@ h3 {
 	padding: 10px;
 	margin: 0 auto;
 	ackground: grey;
+	width: 95%;
 }
 
 .logo_acteurs {
