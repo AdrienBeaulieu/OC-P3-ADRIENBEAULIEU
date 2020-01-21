@@ -14,6 +14,10 @@ html {
 
 /* HEADER */
 
+header {
+	margin-bottom: 20px;
+}
+
  .logo_header {
  float: left;
  width: 50px;
@@ -36,6 +40,7 @@ html {
  
 .barre_header {
 	margin-top: 85px;
+	background-color:grey;
 }
 
 /* SECTION ACTEUR */
@@ -65,19 +70,21 @@ h2 {
 .commentaire_encadrement {
 	border :2px solid grey;
 	padding: 10px;
-	margin: 0 auto;
+	margin-left: 50px;
+	margin-right: 50px;
 	
 }
 
 .commentaire {
-	width: 1000px;
+	width: 0 auto;
 	padding-top: 5px;
 	padding-bottom: 5px;
 	border: 2px solid grey;
 	text-align: right;
 	ackground: silver;
 	border-spacing: 5px;
-	margin: 0 auto;
+	margin-left:15px;
+	margin-right: 15px;
 }
 
 /* FOOTER */
@@ -104,6 +111,5 @@ ul {
 li {
 display: inline;
  margin-left: 5px;
- float:left; /*pour IE*/
  text-align: center;
 }
