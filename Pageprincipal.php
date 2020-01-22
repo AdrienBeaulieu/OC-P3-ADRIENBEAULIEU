@@ -20,18 +20,18 @@
 	
 
 <!-- Section présentation -->
+	<div class="presentation">
 		<h1>Bienvenue sur le site du GBAF</h1>
 		<p id="text_presentation">Le Groupement Banque Assurance Français​ (GBAF) est une fédération  représentant les 6 grands groupes français</p>
 		
 			<p id="logo_presentation_p"><img class="logo_presentation" src="logogbaf.png" alt="Logo GBAF"></p>
 		<p id="barre_presentation"></p>
-		
+	</div>
 
 <!-- Section acteur -->
 	    <h2>Voici nos acteurs et partenaires</h2>
 		<p id="text_acteurs">Texte acteurs et partenaires</p>	
 
-		<?php echo "bonjour"; ?>
 		 <!-- Début section regrouprement Acteurs -->
 
 

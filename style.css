@@ -15,6 +15,7 @@ html {
 
 
 /* HEADER */
+
  .logo_header {
  float: left;
  width: 50px;
@@ -42,6 +43,10 @@ html {
 
 
  /*Présentation */ 
+
+presentation {
+	background-color: silver;
+}
 
 h1 {
 	text-align: center;
@@ -81,31 +86,32 @@ h3 {
 }
 
 .encadrement_acteurs {
-	idth: 1000px;
 	padding-top: 5px;
 	padding-bottom: 5px;
+	padding-right: 50px;
+	padding-left: 25px;
 	border: 2px solid grey;
-	text-align: right;
-	ackground: grey;
+	text-align: right ;
 	border-spacing: 5px;
 	margin: 0 auto;
-	width: 95%.
-
+	border-radius: 10px;
+	overflow: hidden;
 }
 
 .cadre_general {
 	border :2px solid grey;
 	padding: 10px;
 	margin: 0 auto;
-	ackground: grey;
 	width: 95%;
+	border-radius: 10px;
 }
 
-.logo_acteurs {
+img.logo_acteurs {
 	float: left;
-	max-width:150px;
-	height:auto;
+	max-width:250px;
+	max-height:50%;
 	margin-left: 5px;
+	display: block;
 }
 
 /* footer */

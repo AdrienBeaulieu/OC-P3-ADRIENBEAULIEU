@@ -49,8 +49,8 @@ h2 {
 	text-align: center;
 }
 
-.logo_acteur {
-	text-align: center;
+.logo_acteurs {
+	text-align: left;
 	width: 350px;
 	height: auto;
 }
@@ -64,6 +64,8 @@ h2 {
 	padding: 10px;
 	margin-left: 50px;
 	margin-right: 50px;
+	border-radius: 10px;
+
 }
 /* SECTION COMMENTAIRES */
 
@@ -72,6 +74,7 @@ h2 {
 	padding: 10px;
 	margin-left: 50px;
 	margin-right: 50px;
+	border-radius:10px;
 	
 }
 
