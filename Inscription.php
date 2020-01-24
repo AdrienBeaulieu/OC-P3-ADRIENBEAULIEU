@@ -10,39 +10,47 @@
 				<h2> Inscription </h2>
 		<br><br><br>
 		<table>
-			<tr align="right">
-				<td>
+			<tr>
+				<td align="right">
 				<label for="Nom">Nom :</label>
 				</td>
 				<td>
 				<input type="text" placeholder="Nom" id="Nom" name="Nom">
 				</td>
 			</tr>
-			<tr align="right">
-				<td>
+			<tr>
+				<td align="right">
 				<label for="Prénom">Prénom :</label>
 				</td>
 				<td>
 				<input type="text" placeholder="Prénom" id="Prénom" name="Prénom">
 				</td>
 			</tr>
-			<tr align="right">
-				<td>
+			<tr>
+				<td align="right">
 				<label for="mail">E-mail :</label>
 				</td>
 				<td>
 				<input type="text" placeholder="Mail" id="Mail" name="Mail">
 				</td>
 			</tr>
-			<tr align="right">
-				<td>
+			<tr>
+				<td align="right">
 				<label for="motdepasse">Mot de passe :</label>
 				</td>
 				<td>
 				<input type="password" placeholder="mot de passe" id="motdepasse" name="motdepasse">
 				</td>
-			</tr align="right">
+			</tr>
+			<tr>
+				<td></td>
+				<td align="center">
+					<br/>
+					<input type="submit" value="Je m'inscris"/>
+				</td>
+			</tr>
 		</table>
+
 	</div>
 	</body>
 </html>
