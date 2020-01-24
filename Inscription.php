@@ -1,3 +1,60 @@
+<?php
+
+$bdd = new PDO('mysql:host=localhost;dbname=espace_membre', 'root', '');
+
+if(isset($_POST['forminscription']))
+{
+	$Nom = htmlspecialchars($_POST['Nom']);
+	$Prénom = htmlspecialchars($_POST['Prénom']);
+	$Mail = htmlspecialchars($_POST['Mail']);
+	$Mail2 = htmlspecialchars($_POST['Mail2']);
+	$motdepasse = sha1($_POST['motdepasse']);
+	$motdepasse2 = sha1($_POST['motdepasse2']);
+
+	if(!empty($_POST['Nom']) AND !empty($_POST['Prénom']) AND !empty($_POST['Mail']) AND !empty($_POST['motdepasse']))
+	{
+		$Nomlength = strlen($Nom);
+		if($Nomlength <=255)
+		{
+			if($Mail == $Mail2)
+			{
+				if(filter_var($Mail, FILTER_VALIDATE_EMAIL))
+				{
+					if($motdepasse == $motdepasse2)
+					{
+						$insertmbr = $bdd->prepare("INSERT  INTO membres(Nom, Prénom, Mail, motdepasse) VALUES (?, ?, ?, ?");
+						$insertmbr->execute(array($Nom, $Prénom, $Mail, $motdepasse));
+						$erreur = "Votre compte a bien été créé !";
+					}
+					else
+					{
+						$erreur = "Vos mots de passe ne correspondent pas.";
+					}
+				}
+				else
+				{
+					$erreur = "Votre adresse mail n'est pas valide.";
+				}
+			}
+			else
+			{
+				$erreur = "Vos adresses mails ne correspondent pas.";
+			}
+
+		}
+		else
+		{
+			$erreur = "Votre Nom ne doit pas dépasser 255 caractères.";
+		}
+	}
+	else
+	{
+		$erreur = 'Tous les champs doivent être complétés';
+	}
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -15,7 +72,7 @@
 				<label for="Nom">Nom :</label>
 				</td>
 				<td>
-				<input type="text" placeholder="Nom" id="Nom" name="Nom">
+				<input type="text" placeholder="Nom" id="Nom" name="Nom" value="<?php if(isset($Nom)) { echo $Nom; } ?>">
 				</td>
 			</tr>
 			<tr>
@@ -23,15 +80,23 @@
 				<label for="Prénom">Prénom :</label>
 				</td>
 				<td>
-				<input type="text" placeholder="Prénom" id="Prénom" name="Prénom">
+				<input type="text" placeholder="Prénom" id="Prénom" name="Prénom" value="<?php if(isset($Prénom)) { echo $Prénom; } ?>">
 				</td>
 			</tr>
 			<tr>
 				<td align="right">
-				<label for="mail">E-mail :</label>
+				<label for="Mail">E-mail :</label>
 				</td>
 				<td>
-				<input type="text" placeholder="Mail" id="Mail" name="Mail">
+				<input type="text" placeholder="Mail" id="Mail" name="Mail" value="<?php if(isset($Mail)) { echo $Mail; } ?>">
+				</td>
+			</tr>
+			<tr>
+				<td align="right">
+				<label for="Mail2">Confirmation E-mail :</label>
+				</td>
+				<td>
+				<input type="text" placeholder="Confirmez votre Mail" id="Mail2" name="Mail2">
 				</td>
 			</tr>
 			<tr>
@@ -43,14 +108,29 @@
 				</td>
 			</tr>
 			<tr>
+				<td align="right">
+				<label for="motdepasse2">Confirmation Mot de passe :</label>
+				</td>
+				<td>
+				<input type="password" placeholder="Confirmez votre mot de passe" id="motdepasse2" name="motdepasse2">
+				</td>
+			</tr>
+			<tr>
 				<td></td>
 				<td align="center">
 					<br/>
-					<input type="submit" value="Je m'inscris"/>
+					<input type="submit" name="forminscription" value="Je m'inscris"/>
 				</td>
 			</tr>
 		</table>
-
+	</div>
+</form>
+<?php 
+if(isset($erreur))
+{
+	echo $erreur;
+}
+?>
 	</div>
 	</body>
 </html>
