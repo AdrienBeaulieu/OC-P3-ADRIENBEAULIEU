@@ -1,6 +1,6 @@
 <?php
 
-$bdd = new PDO('mysql:host=localhost;dbname=espace_membre', 'root', '');
+$bdd = new PDO('mysql:host=127.0.0.1;dbname=espace_membre', 'root', '');
 
 if(isset($_POST['forminscription']))
 {
@@ -22,8 +22,12 @@ if(isset($_POST['forminscription']))
 				{
 					if($motdepasse == $motdepasse2)
 					{
-						$insertmbr = $bdd->prepare("INSERT  INTO membres(Nom, Prénom, Mail, motdepasse) VALUES (?, ?, ?, ?");
-						$insertmbr->execute(array($Nom, $Prénom, $Mail, $motdepasse));
+						$insertmbr = $bdd->prepare("INSERT INTO membres(nom, prenom, mail, motdepasse) VALUES (:nom, :prenom, :mail, :motdepasse)");
+                        $insertmbr->execute(array(
+              			'nom' => $Nom,
+              			'prenom' => $Prénom,
+              			'mail' => $Mail,
+             			'motdepasse' => $motdepasse));
 						$erreur = "Votre compte a bien été créé !";
 					}
 					else
