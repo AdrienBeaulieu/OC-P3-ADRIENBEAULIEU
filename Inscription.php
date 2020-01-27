@@ -28,7 +28,7 @@ if(isset($_POST['forminscription']))
               			'prenom' => $Prénom,
               			'mail' => $Mail,
              			'motdepasse' => $motdepasse));
-						$erreur = "Votre compte a bien été créé !";
+						$erreur = "Votre compte a bien été créé ! <a href=\"connexion.php\">Me connecter<a/>";
 					}
 					else
 					{

@@ -22,7 +22,12 @@ if(isset($_GET['id']) AND $_GET['id'] > 0)
          
          <p><a href="Pageprincipal.php"><img class="logo_header" src="logogbaf.png" alt="Logo GBAF"><a></p>
          <p> <img class="photo_profil" src="imageprofile.png" alt="Photo de profil"></p> 
-         <div class="nom_prenom"> Nom & Prénom </div>
+         <div class="nom_prenom"> 
+            <?php 
+            echo $userinfo['nom'];
+            ?>
+            <?php 
+            echo $userinfo['prenom']; ?></div>
          <hr class="barre_header" clolor="grey">
       </header>
 

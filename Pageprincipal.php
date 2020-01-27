@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+$bdd = new PDO('mysql:host=127.0.0.1;dbname=espace_membre', 'root', '');
+
+if(isset($_SESSION['id']))
+{
+   $requser = $bdd->prepare("SELECT * FROM membres WHERE id = ?");
+   $requser->execute(array($_SESSION['id']));
+   $user = $requser->fetch();
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -13,7 +24,13 @@
 			
 			<p><a href="Pageprincipal.php"><img class="logo_header" src="logogbaf.png" alt="Logo GBAF"></a></p>
 			<p> <img class="photo_profil" src="imageprofile.png" alt="Photo de profil"></p> 
-			<div class="nom_prenom"> Nom & Prénom </div>
+			<div class="nom_prenom">
+				 <?php 
+            echo $user['nom'];
+            ?>
+            <?php 
+            echo $user['prenom']; ?>
+			</div>
 			<hr class="barre_header" color="grey">
 		</header>
 	
@@ -94,3 +111,10 @@
 
 	</body>
 </html>
+<?php
+}
+else
+{
+	header("Location: connexion.php");
+}
+?>
