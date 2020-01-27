@@ -16,7 +16,7 @@ if(isset($_POST['formconnexion'])) {
          $_SESSION['nom'] = $userinfo['nom'];
          $_SESSION['prenom'] = $userinfo['prenom'];
          $_SESSION['mail'] = $userinfo['mail'];
-         header("Location: profil.php?id=".$_SESSION['id']);
+         header("Location: Pageprincipal.php?id=".$_SESSION['id']);
       } else {
          $erreur = "Mauvais mail ou mot de passe !";
       }
@@ -40,6 +40,7 @@ if(isset($_POST['formconnexion'])) {
             <br /><br />
             <input type="submit" name="formconnexion" value="Se connecter !" />
          </form>
+         <a href="Inscription.php">S'inscrire<a/>
          <?php
          if(isset($erreur)) {
             echo '<font color="red">'.$erreur."</font>";
