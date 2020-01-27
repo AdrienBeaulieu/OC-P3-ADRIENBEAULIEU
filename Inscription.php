@@ -68,6 +68,7 @@ if(isset($_POST['forminscription']))
 	<body>
 		<form method="POST" action="">
 	<div align="center">
+		<img src="logogbaf.png" alt="logo gbaf">
 				<h2> Inscription </h2>
 		<br><br><br>
 		<table>

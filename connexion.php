@@ -32,6 +32,7 @@ if(isset($_POST['formconnexion'])) {
    </head>
    <body>
       <div align="center">
+          <img  src="logogbaf.png" alt="Logo gbaf">
          <h2>Connexion</h2>
          <br /><br />
          <form method="POST" action="">
