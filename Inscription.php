@@ -6,27 +6,24 @@ if(isset($_POST['forminscription']))
 {
 	$Nom = htmlspecialchars($_POST['Nom']);
 	$Prénom = htmlspecialchars($_POST['Prénom']);
-	$Mail = htmlspecialchars($_POST['Mail']);
-	$Mail2 = htmlspecialchars($_POST['Mail2']);
+	$username = htmlspecialchars($_POST['username']);
 	$motdepasse = sha1($_POST['motdepasse']);
 	$motdepasse2 = sha1($_POST['motdepasse2']);
 
-	if(!empty($_POST['Nom']) AND !empty($_POST['Prénom']) AND !empty($_POST['Mail']) AND !empty($_POST['motdepasse']))
+	if(!empty($_POST['Nom']) AND !empty($_POST['Prénom']) AND !empty($_POST['username']) AND !empty($_POST['motdepasse']))
 	{
 		$Nomlength = strlen($Nom);
 		if($Nomlength <=255)
 		{
-			if($Mail == $Mail2)
-			{
-				if(filter_var($Mail, FILTER_VALIDATE_EMAIL))
+			
 				{
 					if($motdepasse == $motdepasse2)
 					{
-						$insertmbr = $bdd->prepare("INSERT INTO membres(nom, prenom, mail, motdepasse) VALUES (:nom, :prenom, :mail, :motdepasse)");
+						$insertmbr = $bdd->prepare("INSERT INTO membres(nom, prenom, username, motdepasse) VALUES (:nom, :prenom, :username, :motdepasse)");
                         $insertmbr->execute(array(
               			'nom' => $Nom,
               			'prenom' => $Prénom,
-              			'mail' => $Mail,
+              			'username' => $username,
              			'motdepasse' => $motdepasse));
 						$erreur = "Votre compte a bien été créé ! <a href=\"connexion.php\">Me connecter<a/>";
 					}
@@ -35,15 +32,6 @@ if(isset($_POST['forminscription']))
 						$erreur = "Vos mots de passe ne correspondent pas.";
 					}
 				}
-				else
-				{
-					$erreur = "Votre adresse mail n'est pas valide.";
-				}
-			}
-			else
-			{
-				$erreur = "Vos adresses mails ne correspondent pas.";
-			}
 
 		}
 		else
@@ -90,18 +78,10 @@ if(isset($_POST['forminscription']))
 			</tr>
 			<tr>
 				<td align="right">
-				<label for="Mail">E-mail :</label>
+				<label for="Mail">Pseudonyme :</label>
 				</td>
 				<td>
-				<input type="text" placeholder="Mail" id="Mail" name="Mail" value="<?php if(isset($Mail)) { echo $Mail; } ?>">
-				</td>
-			</tr>
-			<tr>
-				<td align="right">
-				<label for="Mail2">Confirmation E-mail :</label>
-				</td>
-				<td>
-				<input type="text" placeholder="Confirmez votre Mail" id="Mail2" name="Mail2">
+				<input type="text" placeholder="Pseudonyme" id="username" name="username" value="<?php if(isset($username)) { echo $username; } ?>">
 				</td>
 			</tr>
 			<tr>
