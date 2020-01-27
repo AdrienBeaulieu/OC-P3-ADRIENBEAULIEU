@@ -101,6 +101,22 @@ if(isset($_POST['forminscription']))
 				</td>
 			</tr>
 			<tr>
+				<td align="right">
+				<label for="secretquestion">Votre question secrète :</label>
+				</td>
+				<td>
+				<input type="text" placeholder="Entrez votre question secrète" id="secretquestion" name="secretquestion">
+				</td>
+			</tr>
+			<tr>
+				<td align="right">
+				<label for="secretanswer">Réponse à la question secrète :</label>
+				</td>
+				<td>
+				<input type="password" placeholder="Entrez votre réponse" id="secretanswer" name="secretanswer">
+				</td>
+			</tr>
+			<tr>
 				<td></td>
 				<td align="center">
 					<br/>
