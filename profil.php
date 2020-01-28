@@ -1,18 +1,12 @@
 <?php
+
 session_start();
 
-$bdd = new PDO('mysql:host=127.0.0.1;dbname=espace_membre', 'root', '');
-
-if(isset($_GET['id']) AND $_GET['id'] > 0)
 {
-   $getid = intval($_GET['id']);
-   $requser = $bdd->prepare('SELECT * FROM membres WHERE id = ?');
-   $requser->execute(array($getid));
-   $userinfo = $requser->fetch();
 ?>
 <html>
    <head>
-      <title>Profil</title>
+      <title>GBAF: Profil</title>
       <meta charset="utf-8">
       <link rel="stylesheet" href="styleacteurs.css" />
    </head>
@@ -24,32 +18,25 @@ if(isset($_GET['id']) AND $_GET['id'] > 0)
          <p> <img class="photo_profil" src="imageprofile.png" alt="Photo de profil"></p> 
          <div class="nom_prenom"> 
             <?php 
-            echo $userinfo['nom'];
+            echo $_SESSION['nom'];
             ?>
             <?php 
-            echo $userinfo['prenom']; ?></div>
+            echo $_SESSION['prenom']; ?></div>
          <hr class="barre_header" clolor="grey">
       </header>
 
    <body>
       <div align="center">
-         <h2>Profil de <?php echo $userinfo['prenom'] ?></h2>
+         <h2>Profil de <?php echo $_SESSION['prenom']; ?></h2>
          <br /><br />
-         Nom = <?php echo $userinfo['nom']; ?>
+         Nom = <?php echo $_SESSION['nom']; ?>
          <br />
-         Prénom = <?php echo $userinfo['prenom']; ?>
+         Prénom = <?php echo $_SESSION['prenom']; ?>
          <br />
-         Mail = <?php echo $userinfo['mail']; ?>
+         Pseudonyme = <?php echo $_SESSION['username']; ?>
          <br />
-         <?php
-         if(isset($_SESSION['id']) AND $userinfo['id'] == $_SESSION['id'])
-         {
-         ?>
          <a href='#'>Editer mon profil<a/>
          <a href='deconnexion.php'>Deconnexion<a/>
-         <?PHP
-         }
-         ?>
       </div>
    </body>
 </html>
