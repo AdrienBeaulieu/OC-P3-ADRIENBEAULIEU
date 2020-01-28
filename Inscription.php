@@ -4,14 +4,14 @@ $bdd = new PDO('mysql:host=127.0.0.1;dbname=espace_membre', 'root', '');
 
 if(isset($_POST['forminscription']))
 {
-	$Nom = htmlspecialchars($_POST['Nom']);
-	$Prénom = htmlspecialchars($_POST['Prénom']);
+	$Nom = htmlspecialchars($_POST['nom']);
+	$Prénom = htmlspecialchars($_POST['prenom']);
 	$username = htmlspecialchars($_POST['username']);
 	$motdepasse = htmlspecialchars($_POST['motdepasse']);
 	$motdepasse2 = htmlspecialchars($_POST['motdepasse2']);
 	$secretanswer = htmlspecialchars($_POST['secretanswer']);
 
-	if(!empty($_POST['Nom']) AND !empty($_POST['Prénom']) AND !empty($_POST['username']) AND !empty($_POST['motdepasse']) AND !empty($_POST['secretanswer']))
+	if(!empty($_POST['nom']) AND !empty($_POST['prenom']) AND !empty($_POST['username']) AND !empty($_POST['motdepasse']) AND !empty($_POST['secretanswer']))
 	{
 		$Nomlength = strlen($Nom);
 		if($Nomlength <=255)
@@ -56,59 +56,36 @@ if(isset($_POST['forminscription']))
 	<head>
 		<title>GBAF : Inscription</title>
 		<meta charset="utf-8">
+		<link rel="stylesheet" href="body.css" media="screen" type="text/css" />
 	</head>
 	<body>
-		<form method="POST" action="">
-	<div align="center">
-		<img src="logogbaf.png" alt="logo gbaf">
-				<h2> Inscription </h2>
-		<br><br><br>
-		<table>
-			<tr>
-				<td align="right">
-				<label for="Nom">Nom :</label>
-				</td>
-				<td>
-				<input type="text" placeholder="Nom" id="Nom" name="Nom" value="<?php if(isset($Nom)) { echo $Nom; } ?>">
-				</td>
-			</tr>
-			<tr>
-				<td align="right">
-				<label for="Prénom">Prénom :</label>
-				</td>
-				<td>
-				<input type="text" placeholder="Prénom" id="Prénom" name="Prénom" value="<?php if(isset($Prénom)) { echo $Prénom; } ?>">
-				</td>
-			</tr>
-			<tr>
-				<td align="right">
-				<label for="Mail">Pseudonyme :</label>
-				</td>
-				<td>
+	<div id="container">
+	
+				<form method="POST" action="">
+			
+					<h1><b>Inscription</b></h1>
+				<label for="Nom"><b>Nom :</b></label>
+				<input type="text" placeholder="Nom" id="nom" name="nom" value="<?php if(isset($Nom)) { echo $Nom; } ?>">
+			
+				
+				<label for="Prénom"><b>Prénom :</b></label>
+				<input type="text" placeholder="Prénom" id="prenom" name="prenom" value="<?php if(isset($Prénom)) { echo $Prénom; } ?>">
+			
+				
+				<label for="Mail"><b>Pseudonyme :</b></label>
 				<input type="text" placeholder="Pseudonyme" id="username" name="username" value="<?php if(isset($username)) { echo $username; } ?>">
-				</td>
-			</tr>
-			<tr>
-				<td align="right">
-				<label for="motdepasse">Mot de passe :</label>
-				</td>
-				<td>
+		
+			
+				
+				<label for="motdepasse"><b>Mot de passe :</b></label>				
 				<input type="password" placeholder="mot de passe" id="motdepasse" name="motdepasse">
-				</td>
-			</tr>
-			<tr>
-				<td align="right">
-				<label for="motdepasse2">Confirmation Mot de passe :</label>
-				</td>
-				<td>
+		
+			
+				<label for="motdepasse2"><b>Confirmation Mot de passe :</b></label>
 				<input type="password" placeholder="Confirmez votre mot de passe" id="motdepasse2" name="motdepasse2">
-				</td>
-			</tr>
-			<tr>
-				<td align="right">
-				<label for="secretquestion">Votre question secrète :</label>
-				</td>
-				<td>
+			
+				
+				<label for="secretquestion"><b>Votre question secrète :</b></label>
 				<select name="secretquestion" id="secretquestion">
 					<?php 
 					$reponse = $bdd->query('SELECT * FROM secretquestions');
@@ -119,25 +96,14 @@ if(isset($_POST['forminscription']))
 				<?php 
 				}
 				?>
-				</select>
-				</td>
-			</tr>
-			<tr>
-				<td align="right">
-				<label for="secretanswer">Réponse à la question secrète :</label>
-				</td>
-				<td>
+		
+				<label for="secretanswer"><b>Réponse à la question secrète :</b></label>
 				<input type="password" placeholder="Entrez votre réponse" id="secretanswer" name="secretanswer">
-				</td>
-			</tr>
-			<tr>
-				<td></td>
-				<td align="center">
-					<br/>
+		
+				
+				
 					<input type="submit" name="forminscription" value="Je m'inscris"/>
-				</td>
-			</tr>
-		</table>
+		
 	</div>
 </form>
 <?php 
