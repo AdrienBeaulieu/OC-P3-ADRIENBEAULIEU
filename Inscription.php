@@ -50,7 +50,7 @@ if(isset($_POST['forminscription']))
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>S'inscrire</title>
+		<title>GBAF : Inscription</title>
 		<meta charset="utf-8">
 	</head>
 	<body>
@@ -105,7 +105,17 @@ if(isset($_POST['forminscription']))
 				<label for="secretquestion">Votre question secrète :</label>
 				</td>
 				<td>
-				<input type="text" placeholder="Entrez votre question secrète" id="secretquestion" name="secretquestion">
+				<select name="secretquestion" id="secretquestion">
+					<?php 
+					$reponse = $bdd->query('SELECT * FROM secretquestions');
+					while ($donnees = $reponse->fetch())
+					{
+					?>	
+					<option value="<?php echo $donnees['secretquestion']; ?>"><?php echo $donnees['secretquestion']; ?></option>
+				<?php 
+				}
+				?>
+				</select>
 				</td>
 			</tr>
 			<tr>
