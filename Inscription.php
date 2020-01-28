@@ -7,10 +7,11 @@ if(isset($_POST['forminscription']))
 	$Nom = htmlspecialchars($_POST['Nom']);
 	$Prénom = htmlspecialchars($_POST['Prénom']);
 	$username = htmlspecialchars($_POST['username']);
-	$motdepasse = sha1($_POST['motdepasse']);
-	$motdepasse2 = sha1($_POST['motdepasse2']);
+	$motdepasse = htmlspecialchars($_POST['motdepasse']);
+	$motdepasse2 = htmlspecialchars($_POST['motdepasse2']);
+	$secretanswer = htmlspecialchars($_POST['secretanswer']);
 
-	if(!empty($_POST['Nom']) AND !empty($_POST['Prénom']) AND !empty($_POST['username']) AND !empty($_POST['motdepasse']))
+	if(!empty($_POST['Nom']) AND !empty($_POST['Prénom']) AND !empty($_POST['username']) AND !empty($_POST['motdepasse']) AND !empty($_POST['secretanswer']))
 	{
 		$Nomlength = strlen($Nom);
 		if($Nomlength <=255)
@@ -19,12 +20,15 @@ if(isset($_POST['forminscription']))
 				{
 					if($motdepasse == $motdepasse2)
 					{
-						$insertmbr = $bdd->prepare("INSERT INTO membres(nom, prenom, username, motdepasse) VALUES (:nom, :prenom, :username, :motdepasse)");
+						$pass_hache = password_hash($_POST['motdepasse'], PASSWORD_DEFAULT);
+						$secret_hache = password_hash($_POST['secretanswer'], PASSWORD_DEFAULT);
+						$insertmbr = $bdd->prepare("INSERT INTO membres(nom, prenom, username, motdepasse, secretanswer) VALUES (:nom, :prenom, :username, :motdepasse, :secretanswer)");
                         $insertmbr->execute(array(
               			'nom' => $Nom,
               			'prenom' => $Prénom,
               			'username' => $username,
-             			'motdepasse' => $motdepasse));
+             			'motdepasse' => $pass_hache,
+             			'secretanswer' => $secret_hache));
 						$erreur = "Votre compte a bien été créé ! <a href=\"connexion.php\">Me connecter<a/>";
 					}
 					else
