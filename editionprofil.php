@@ -1,10 +1,32 @@
+<?php 
+
+session_start();
+
+if(isset($_SESSION['id']))
+
+{
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
 	<title>GBAF : Edition profil</title>
 	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="styleacteurs.css">
 </head>
 <body>
+	<header class="ntete">
+         
+         <p><a href="Pageprincipal.php"><img class="logo_header" src="logogbaf.png" alt="Logo GBAF"><a></p>
+         <p><a href="profil.php"><img class="photo_profil" src="imageprofile.png" alt="Photo de profil"></a></p> 
+         <div class="nom_prenom"> 
+            <?php 
+            echo $_SESSION['nom'];
+            ?>
+            <?php 
+            echo $_SESSION['prenom']; ?></div>
+         <hr class="barre_header" clolor="grey">
+      </header>
 	<div align="center">
 		<h2>Edition de mon profil</h2><br /><br />
 		<div align="center">
@@ -21,3 +43,10 @@
 	</div>
 </body>
 </html>
+<?php
+}
+else
+{
+   header("Location: connexion.php");
+}
+?>

@@ -32,13 +32,13 @@ if(isset($_SESSION['id']))
          <h2>Profil de <?php echo $_SESSION['prenom']; ?></h2>
          <br /><br />
          Nom = <?php echo $_SESSION['nom']; ?>
-         <br />
+         <br /><br />
          Prénom = <?php echo $_SESSION['prenom']; ?>
-         <br />
+         <br /><br />
          Pseudonyme = <?php echo $_SESSION['username']; ?>
-         <br />
-         <a href='editionprofil.php'>Editer mon profil<a/>
-         <a href='deconnexion.php'>Deconnexion<a/>
+         <br /><br /><br />
+         <a href='editionprofil.php' class="boutonsite">Editer mon profil<a/>
+         <a href='deconnexion.php' class="boutonsite">Deconnexion<a/>
       </div>
    </body>
 </html>

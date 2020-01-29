@@ -149,3 +149,34 @@ h1 {
 form {
 	text-align: center;
 }
+
+input[type=submit] {
+    background-color: #FF0000;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 10%;
+}
+input[type=submit]:hover {
+    background-color: white;
+    color: #B22222;
+    border: 1px solid #B22222;
+}
+
+.boutonsite {
+	background-color: #FF0000;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.boutonsite:hover {
+	background-color: white;
+    color: #B22222;
+    border: 1px solid #B22222;
+}
