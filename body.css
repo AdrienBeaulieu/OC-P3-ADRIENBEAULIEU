@@ -6,6 +6,7 @@ body{
     margin:0 auto;
     margin-top:10%;
 }
+
 /* Bordered form */
 form {
     width:100%;
@@ -42,6 +43,22 @@ input[type=submit] {
 }
 input[type=submit]:hover {
     background-color: white;
+    color: #B22222;
+    border: 1px solid #B22222;
+}
+
+.sinscrire {
+	background-color: #FF6347;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.sinscrire:hover {
+	background-color: white;
     color: #B22222;
     border: 1px solid #B22222;
 }

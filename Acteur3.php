@@ -14,7 +14,7 @@ if(isset($_SESSION['id']))
 	<head>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="styleacteurs.css" />
-		<title>Formation&co</title>
+		<title>GBAF: Formation&co</title>
 	</head>
 	
 	<body>
@@ -23,7 +23,7 @@ if(isset($_SESSION['id']))
 		<header class="ntete">
 			
 			<p><a href="Pageprincipal.php"><img class="logo_header" src="logogbaf.png" alt="Logo GBAF"></a></p>
-			<p> <img class="photo_profil" src="imageprofile.png" alt="Photo de profil"></p> 
+			<p><a href="profil.php"><img class="photo_profil" src="imageprofile.png" alt="Photo de profil"></a></p> 
 			<div class="nom_prenom">
 				 <?php 
             echo $user['nom'];

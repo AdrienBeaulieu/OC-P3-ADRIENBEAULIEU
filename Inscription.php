@@ -103,9 +103,11 @@ if(isset($_POST['forminscription']))
 				
 				
 					<input type="submit" name="forminscription" value="Je m'inscris"/>
-		
+			
 	</div>
+
 </form>
+		
 <?php 
 if(isset($erreur))
 {

@@ -53,7 +53,7 @@ if(isset($_POST['formconnexion'])) {
             
             <input type="submit" id="submit" name="formconnexion" value="Se connecter !" />
          </form>
-         <a href="Inscription.php">S'inscrire<a/>
+         <a href="Inscription.php" class="sinscrire">Pas encore de compte ?<a/>
          <?php
          if(isset($erreur)) {
             echo '<font color="black">'.$erreur."</font>";
