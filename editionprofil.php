@@ -2,9 +2,41 @@
 
 session_start();
 
-if(isset($_SESSION['id']))
+$bdd = new PDO('mysql:host=127.0.0.1;dbname=espace_membre', 'root', '');
 
-{
+if(isset($_SESSION['id'])) {
+   $requser = $bdd->prepare("SELECT * FROM membres WHERE id = ?");
+   $requser->execute(array($_SESSION['id']));
+   $user = $requser->fetch();
+   if(isset($_POST['newprenom']) AND !empty($_POST['newprenom']) AND $_POST['newprenom'] != $user['prenom']) {
+      $newprenom = htmlspecialchars($_POST['newprenom']);
+      $insertprenom = $bdd->prepare("UPDATE membres SET prenom = ? WHERE id = ?");
+      $insertprenom->execute(array($newprenom, $_SESSION['id']));
+      header('Location: profil.php?id='.$_SESSION['id']);
+   }
+   if(isset($_POST['newpseudo']) AND !empty($_POST['newpseudo']) AND $_POST['newpseudo'] != $user['username']) {
+      $newpseudo = htmlspecialchars($_POST['newpseudo']);
+      $insertpseudo = $bdd->prepare("UPDATE membres SET username = ? WHERE id = ?");
+      $insertpseudo->execute(array($newpseudo, $_SESSION['id']));
+      header('Location: profil.php?id='.$_SESSION['id']);
+   }
+   if(isset($_POST['newnom']) AND !empty($_POST['newnom']) AND $_POST['newnom'] != $user['nom']) {
+      $newnom = htmlspecialchars($_POST['newnom']);
+      $insertnom = $bdd->prepare("UPDATE membres SET nom = ? WHERE id = ?");
+      $insertnom->execute(array($newnom, $_SESSION['id']));
+      header('Location: profil.php?id='.$_SESSION['id']);
+   }
+   if(isset($_POST['newmdp1']) AND !empty($_POST['newmdp1']) AND isset($_POST['newmdp2']) AND !empty($_POST['newmdp2'])) {
+      $mdp1 = password_hash($_POST['newmdp1']);
+      $mdp2 = password_hash($_POST['newmdp2']);
+      if($mdp1 == $mdp2) {
+         $insertmdp = $bdd->prepare("UPDATE membres SET motdepasse = ? WHERE id = ?");
+         $insertmdp->execute(array($mdp1, $_SESSION['id']));
+         header('Location: profil.php?id='.$_SESSION['id']);
+      } else {
+         $msg = "Vos deux mots de passe ne correspondent pas !";
+      }
+   }
 ?>
 
 <!DOCTYPE html>
@@ -31,6 +63,10 @@ if(isset($_SESSION['id']))
 		<h2>Edition de mon profil</h2><br /><br />
 		<div align="center">
 			<form method="POST" action="" enctype="mutlipart/form-daye">
+				<label>Prénom :</label>
+				<input type="text" name="newprenom" placeholder="Prénom" value=""/><br /><br />
+				<label>Nom :</label>
+				<input type="text" name="newnom" placeholder="Nom" value=""/><br /><br />
 				<label>Pseudo :</label>
 				<input type="text" name="newpseudo" placeholder="Pseudonyme" value=""/><br /><br />
 				<label>Mot de passe :</label>

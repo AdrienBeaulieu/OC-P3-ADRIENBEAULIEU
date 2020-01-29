@@ -157,7 +157,7 @@ input[type=submit] {
     margin: 8px 0;
     border: none;
     cursor: pointer;
-    width: 10%;
+    width: auto;
 }
 input[type=submit]:hover {
     background-color: white;
