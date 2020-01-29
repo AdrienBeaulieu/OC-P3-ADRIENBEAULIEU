@@ -53,10 +53,10 @@ if(isset($_SESSION['id'])) {
          <p><a href="profil.php"><img class="photo_profil" src="imageprofile.png" alt="Photo de profil"></a></p> 
          <div class="nom_prenom"> 
             <?php 
-            echo $_SESSION['nom'];
+            echo $user['nom'];
             ?>
             <?php 
-            echo $_SESSION['prenom']; ?></div>
+            echo $user['prenom']; ?></div>
          <hr class="barre_header" clolor="grey">
       </header>
 	<div align="center">

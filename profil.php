@@ -1,10 +1,13 @@
 <?php
-
 session_start();
 
-if(isset($_SESSION['id']))
+$bdd = new PDO('mysql:host=127.0.0.1;dbname=espace_membre', 'root', '');
 
+if(isset($_SESSION['id']))
 {
+   $requser = $bdd->prepare("SELECT * FROM membres WHERE id = ?");
+   $requser->execute(array($_SESSION['id']));
+   $user = $requser->fetch();
 ?>
 <html>
    <head>
@@ -20,22 +23,22 @@ if(isset($_SESSION['id']))
          <p><a href="profil.php"><img class="photo_profil" src="imageprofile.png" alt="Photo de profil"></a></p> 
          <div class="nom_prenom"> 
             <?php 
-            echo $_SESSION['nom'];
+            echo $user['nom'];
             ?>
             <?php 
-            echo $_SESSION['prenom']; ?></div>
+            echo $user['prenom']; ?></div>
          <hr class="barre_header" clolor="grey">
       </header>
 
    <body>
       <div align="center">
-         <h2>Profil de <?php echo $_SESSION['prenom']; ?></h2>
+         <h2>Profil de <?php echo $user['prenom']; ?></h2>
          <br /><br />
-         Nom = <?php echo $_SESSION['nom']; ?>
+         Nom = <?php echo $user['nom']; ?>
          <br /><br />
-         Prénom = <?php echo $_SESSION['prenom']; ?>
+         Prénom = <?php echo $user['prenom']; ?>
          <br /><br />
-         Pseudonyme = <?php echo $_SESSION['username']; ?>
+         Pseudonyme = <?php echo $user['username']; ?>
          <br /><br /><br />
          <a href='editionprofil.php' class="boutonsite">Editer mon profil<a/>
          <a href='deconnexion.php' class="boutonsite">Deconnexion<a/>
