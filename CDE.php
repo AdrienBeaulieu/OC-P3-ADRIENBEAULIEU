@@ -14,7 +14,7 @@ if(isset($_SESSION['id']))
 	<head>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="styleacteurs.css" />
-		<title>CDE</title>
+		<title>GBAF: CDE</title>
 	</head>
 
 	<body>
@@ -51,8 +51,14 @@ if(isset($_SESSION['id']))
 		<br />
 		<div class="commentaire_encadrement">
 			<p>X Commentaires</p>
+				<div class="like_encadrement">
+					<a href="like.php" class="like">J'aime</a>
+					<a href="dislike.php" class="dislike">J'aime pas</a>
+				</div>
 			<div class="commentaire">
-				CECI EST UN COMMENTAIRE
+				<p>Prénom: </p>
+				<p>Message: </p>
+				<p>Date: </p>
 			</div>
 		</div>
            
