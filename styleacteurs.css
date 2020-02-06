@@ -69,6 +69,16 @@ h2 {
 }
 /* SECTION COMMENTAIRES */
 
+.votrecommentaire {
+	text-align: center;
+	border :2px solid grey;
+	padding: 10px;
+	margin-left: 50px;
+	margin-right: 50px;
+	border-radius:10px;
+
+}
+
 .commentaire_encadrement {
 	border :2px solid grey;
 	padding: 10px;

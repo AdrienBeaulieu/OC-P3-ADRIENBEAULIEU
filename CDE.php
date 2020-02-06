@@ -2,12 +2,48 @@
 session_start();
 
 $bdd = new PDO('mysql:host=127.0.0.1;dbname=espace_membre', 'root', '');
+date_default_timezone_set('Europe/Paris');
+
 
 if(isset($_SESSION['id']))
 {
    $requser = $bdd->prepare("SELECT * FROM membres WHERE id = ?");
    $requser->execute(array($_SESSION['id']));
    $user = $requser->fetch();
+
+   	{
+   		if(isset($_POST['formincomment']))
+			{
+				$date = htmlspecialchars($_POST['date']);
+				$message = htmlspecialchars($_POST['message']);
+				
+   		
+				   		if(!empty($_POST['message']))
+				   		{
+				   			$insertcmt = $bdd->prepare("INSERT INTO comments(uid, date, message) VALUES (:cid, :uid, :date, :message)");
+				   			$insertcmt->execute(array(
+				  
+				    			'uid' => $user['id'],
+				    			'date' => $date,
+				    			'message' => $message));
+				   				$erreur = "ERREUR BDD";
+				   		}
+				   		else
+				   		{
+				   			$erreur = "Vous n'avez pas écris de message.";
+				   		}
+
+			}
+			else
+			{
+				$erreur = "probleme isset form"
+			}
+
+   	}
+
+             			
+
+ 
 ?>
 <!DOCTYPE html>
 <html>
@@ -49,12 +85,25 @@ if(isset($_SESSION['id']))
 
 <!-- Section commentaire -->
 		<br />
+		<div class="votrecommentaire">
+
+ <form method='POST' action="">
+	<input type='hidden' name='uid' value=''>
+	<input type='hidden' name='date' value="">
+	<textarea name='message'></textarea><br />
+	<button type='submit' name='submitcomment'>Commenter</button>
+	</form>
+
+
+		</div>
+		<br />
 		<div class="commentaire_encadrement">
 			<p>X Commentaires</p>
 				<div class="like_encadrement">
 					<a href="like.php" class="like">J'aime</a>
 					<a href="dislike.php" class="dislike">J'aime pas</a>
 				</div>
+
 			<div class="commentaire">
 				<p>Prénom: </p>
 				<p>Message: </p>
