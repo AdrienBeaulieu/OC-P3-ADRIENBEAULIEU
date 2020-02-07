@@ -11,6 +11,9 @@ if(isset($_SESSION['id']))
    $requser->execute(array($_SESSION['id']));
    $user = $requser->fetch();
 
+   $reqcomm = $bdd->query('SELECT * FROM comments');
+   
+
    	
    		if(isset($_POST['submit_commentaire']))
 			$commentaire = htmlspecialchars($_POST['commentaire']);
@@ -78,22 +81,31 @@ if(isset($_SESSION['id']))
 </form>
 
 
+<?php  $totalcommentaireReqID = $bdd->query("SELECT COUNT(*) FROM comments");
+	 	$totalcommentaireID = $totalcommentaireReqID->fetchColumn();  ?>
+
 		</div>
 		<br />
 		<div class="commentaire_encadrement">
-			<p>X Commentaires</p>
+			<p><?php echo $totalcommentaireID; ?> Commentaires</p>
 				<div class="like_encadrement">
 					<a href="like.php" class="like">J'aime</a>
 					<a href="dislike.php" class="dislike">J'aime pas</a>
 				</div>
+<?php while ($commentaires = $reqcomm->fetch()) { ?>
+
 
 			<div class="commentaire">
-				<p>Prénom: </p>
-				<p>Message: </p>
-				<p>Date: </p>
+				<p>Prénom: <?php echo $commentaires['prenom']; ?> </p>
+				<p>Message: <?php echo $commentaires['commentaire']; ?> </p>
+				<p>Date: <?php echo $commentaires['dates']; ?> </p>
 			</div>
+<br />
+<?php } ?>
+
 		</div>
            
+
 <!-- Footer -->
 		<footer>
 			<ul>	
