@@ -5,29 +5,37 @@ $bdd = new PDO('mysql:host=127.0.0.1;dbname=espace_membre', 'root', '');
 setlocale(LC_TIME, 'fra_fra');
 
 
-if(isset($_SESSION['id']))
-{
+if(isset($_SESSION['id'])){
    $requser = $bdd->prepare("SELECT * FROM membres WHERE id = ?");
    $requser->execute(array($_SESSION['id']));
    $user = $requser->fetch();
 
-   $reqcomm = $bdd->query('SELECT * FROM comments');
-   
+   $userid = $_SESSION['id'];
 
-   	
-   		if(isset($_POST['submit_commentaire'])) {
-			$commentaire = htmlspecialchars($_POST['commentaire']);
-			$dates = strftime('%d/%m/%y');}
-				   		if(isset($_POST['commentaire']) AND !empty($_POST['commentaire'])) 
-				   		{
-				   			$insertcmt = $bdd->prepare('INSERT INTO comments (prenom, commentaire, dates) VALUES (?, ?,?)');
-				   			$insertcmt->execute(array($user['prenom'],$commentaire,$dates));
-				   			header("Location: CDE.php");
-				   		}
-				   		else
-				   		{
-				   			$erreur = "Vous devez écrire un message avant de le poster !";
-				   		}
+   $reqidcomment = $bdd->query("SELECT userid FROM comments");
+   $useridcomm = $reqidcomment->fetch();
+
+   $reqcomm = $bdd->query('SELECT * FROM comments');
+
+
+	if(isset($_POST['submit_commentaire'])) {
+		$commentaire = htmlspecialchars($_POST['commentaire']);
+		$dates = strftime('%d/%m/%y');}
+			if(isset($_POST['commentaire']) AND !empty($_POST['commentaire'])) {
+				if($_SESSION['id'] == $useridcomm['userid']) {
+					# code...
+				
+					 echo "Vous avez déjà écrit un commentaire !";
+
+				}else{
+					$insertcmt = $bdd->prepare('INSERT INTO comments (prenom, commentaire, dates, userid) VALUES (?, ?, ?, ?)');
+					$insertcmt->execute(array($user['prenom'],$commentaire,$dates, $userid));
+					header("Location: CDE.php");}
+			}else{
+			echo "Vous n'avez pas écris de message !";
+			}
+
+			
 ?>
 <!DOCTYPE html>
 <html>
@@ -115,9 +123,7 @@ if(isset($_SESSION['id']))
 	</body>
 </html>
 <?php
-}
-else
-{
+}else{
 	header("Location: connexion.php");
 }
 ?>
