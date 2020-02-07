@@ -2,12 +2,41 @@
 session_start();
 
 $bdd = new PDO('mysql:host=127.0.0.1;dbname=espace_membre', 'root', '');
+setlocale(LC_TIME, 'fra_fra');
 
-if(isset($_SESSION['id']))
-{
+
+if(isset($_SESSION['id'])){
    $requser = $bdd->prepare("SELECT * FROM membres WHERE id = ?");
    $requser->execute(array($_SESSION['id']));
    $user = $requser->fetch();
+
+   $userid = $_SESSION['id'];
+
+   $reqidcomment = $bdd->query("SELECT userid FROM commentspp");
+   $useridcomm = $reqidcomment->fetch();
+
+   $reqcomm = $bdd->query('SELECT * FROM commentspp');
+
+
+	if(isset($_POST['submit_commentaire'])) {
+		$commentaire = htmlspecialchars($_POST['commentaire']);
+		$dates = strftime('%d/%m/%y');
+			if(isset($_POST['commentaire']) AND !empty($_POST['commentaire'])) {
+				if($_SESSION['id'] == $useridcomm['userid']) {
+					# code...
+				
+					 echo "Vous avez déjà écrit un commentaire !";
+
+				}else{
+					$insertcmt = $bdd->prepare('INSERT INTO commentspp (prenom, commentaire, dates, userid) VALUES (?, ?, ?, ?)');
+					$insertcmt->execute(array($user['prenom'],$commentaire,$dates, $userid));
+					header("Location: acteur4.php");}
+			}else{
+			echo "Vous n'avez pas écris de message !";
+			}
+	}
+
+			
 ?>
 <!DOCTYPE html>
 <html>
@@ -59,12 +88,37 @@ if(isset($_SESSION['id']))
 	</div>
 
 <!-- Section commentaire -->
+			<br />
+		<div class="votrecommentaire">
+
+ <form method="POST">
+   <textarea name="commentaire" placeholder="Votre commentaire..."></textarea><br />
+   <input type="submit" value="Poster mon commentaire" name="submit_commentaire" />
+</form>
+
+
+<?php  $totalcommentaireReqID = $bdd->query("SELECT COUNT(*) FROM commentspp");
+	 	$totalcommentaireID = $totalcommentaireReqID->fetchColumn();  ?>
+
+		</div>
 		<br />
 		<div class="commentaire_encadrement">
-			<p>X Commentaires</p>
+			<p><?php echo $totalcommentaireID; ?> Commentaires</p>
+				<div class="like_encadrement">
+					<a href="like.php" class="like">J'aime</a>
+					<a href="dislike.php" class="dislike">J'aime pas</a>
+				</div>
+<?php while ($commentaires = $reqcomm->fetch()) { ?>
+
+
 			<div class="commentaire">
-				CECI EST UN COMMENTAIRE
+				<p>Prénom: <?php echo $commentaires['prenom']; ?> </p>
+				<p>Message: <?php echo $commentaires['commentaire']; ?> </p>
+				<p>Date: <?php echo $commentaires['dates']; ?> </p>
 			</div>
+<br />
+<?php } ?>
+
 		</div>
 		
 		<!-- Footer -->
