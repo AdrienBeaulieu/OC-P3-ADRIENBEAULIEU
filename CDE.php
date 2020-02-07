@@ -12,21 +12,31 @@ if(isset($_SESSION['id']))
    $user = $requser->fetch();
 
    $reqcomm = $bdd->query('SELECT * FROM comments');
-   
+   $commentaires = $reqcomm->fetch();
+
 
    	
    		if(isset($_POST['submit_commentaire']))
 			$commentaire = htmlspecialchars($_POST['commentaire']);
 			$dates = strftime('%d/%m/%y');
-				   		if(isset($_POST['commentaire']) AND !empty($_POST['commentaire']))
-				   		{
-				   			$insertcmt = $bdd->prepare('INSERT INTO comments (prenom, commentaire, dates) VALUES (?, ?,?)');
-				   			$insertcmt->execute(array($user['prenom'],$commentaire,$dates));
-				   		}
-				   		else
-				   		{
-				   			$erreur = "Vous devez écrire un message avant de le poster !";
-				   		}
+				   			if($user['prenom'] = $commentaires['prenom']) 
+				   			{
+				   				echo "Vous ave déjà posté un commentaire !";
+				   			}
+				   			else
+				   			{
+				   				if(isset($_POST['commentaire']) AND !empty($_POST['commentaire']))
+				   						{
+							   			$insertcmt = $bdd->prepare('INSERT INTO comments (prenom, commentaire, dates) VALUES (?, ?,?)');
+							   			$insertcmt->execute(array($user['prenom'],$commentaire,$dates));
+							   			header("Location: CDE.php");
+				   						}
+								   		else
+								   		{
+								   			$erreur = "Vous devez écrire un message avant de le poster !";
+								   		} 
+							}
+				   		
 
 
              			
