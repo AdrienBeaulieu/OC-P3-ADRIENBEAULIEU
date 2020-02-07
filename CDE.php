@@ -2,7 +2,7 @@
 session_start();
 
 $bdd = new PDO('mysql:host=127.0.0.1;dbname=espace_membre', 'root', '');
-date_default_timezone_set('Europe/Paris');
+setlocale(LC_TIME, 'fra_fra');
 
 
 if(isset($_SESSION['id']))
@@ -11,35 +11,20 @@ if(isset($_SESSION['id']))
    $requser->execute(array($_SESSION['id']));
    $user = $requser->fetch();
 
-   	{
-   		if(isset($_POST['formincomment']))
-			{
-				$date = htmlspecialchars($_POST['date']);
-				$message = htmlspecialchars($_POST['message']);
-				
-   		
-				   		if(!empty($_POST['message']))
+   	
+   		if(isset($_POST['submit_commentaire']))
+			$commentaire = htmlspecialchars($_POST['commentaire']);
+			$dates = strftime('%d/%m/%y');
+				   		if(isset($_POST['commentaire']) AND !empty($_POST['commentaire']))
 				   		{
-				   			$insertcmt = $bdd->prepare("INSERT INTO comments(uid, date, message) VALUES (:cid, :uid, :date, :message)");
-				   			$insertcmt->execute(array(
-				  
-				    			'uid' => $user['id'],
-				    			'date' => $date,
-				    			'message' => $message));
-				   				$erreur = "ERREUR BDD";
+				   			$insertcmt = $bdd->prepare('INSERT INTO comments (prenom, commentaire, dates) VALUES (?, ?,?)');
+				   			$insertcmt->execute(array($user['prenom'],$commentaire,$dates));
 				   		}
 				   		else
 				   		{
-				   			$erreur = "Vous n'avez pas écris de message.";
+				   			$erreur = "Vous devez écrire un message avant de le poster !";
 				   		}
 
-			}
-			else
-			{
-				$erreur = "probleme isset form"
-			}
-
-   	}
 
              			
 
@@ -87,12 +72,10 @@ if(isset($_SESSION['id']))
 		<br />
 		<div class="votrecommentaire">
 
- <form method='POST' action="">
-	<input type='hidden' name='uid' value=''>
-	<input type='hidden' name='date' value="">
-	<textarea name='message'></textarea><br />
-	<button type='submit' name='submitcomment'>Commenter</button>
-	</form>
+ <form method="POST">
+   <textarea name="commentaire" placeholder="Votre commentaire..."></textarea><br />
+   <input type="submit" value="Poster mon commentaire" name="submit_commentaire" />
+</form>
 
 
 		</div>
