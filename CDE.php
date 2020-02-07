@@ -20,7 +20,7 @@ if(isset($_SESSION['id'])){
 
 	if(isset($_POST['submit_commentaire'])) {
 		$commentaire = htmlspecialchars($_POST['commentaire']);
-		$dates = strftime('%d/%m/%y');}
+		$dates = strftime('%d/%m/%y');
 			if(isset($_POST['commentaire']) AND !empty($_POST['commentaire'])) {
 				if($_SESSION['id'] == $useridcomm['userid']) {
 					# code...
@@ -34,6 +34,7 @@ if(isset($_SESSION['id'])){
 			}else{
 			echo "Vous n'avez pas écris de message !";
 			}
+	}
 
 			
 ?>
