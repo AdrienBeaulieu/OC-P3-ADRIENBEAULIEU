@@ -4,6 +4,14 @@ session_start();
 $bdd = new PDO('mysql:host=127.0.0.1;dbname=espace_membre', 'root', '');
 setlocale(LC_TIME, 'fra_fra');
 
+	$likes = $bdd->prepare('SELECT id FROM likes4');
+      $likes->execute(array());
+      $likes = $likes->rowCount();
+      $dislikes = $bdd->prepare('SELECT id FROM dislikes4');
+      $dislikes->execute(array());
+      $dislikes = $dislikes->rowCount();
+
+
 
 if(isset($_SESSION['id'])){
    $requser = $bdd->prepare("SELECT * FROM membres WHERE id = ?");
@@ -51,7 +59,8 @@ if(isset($_SESSION['id'])){
 		<header class="ntete">
 			
 			<p><a href="Pageprincipal.php"><img class="logo_header" src="logogbaf.png" alt="Logo GBAF"></a></p>
-			<p><a href="profil.php"><img class="photo_profil" src="imageprofile.png" alt="Photo de profil"></a></p> 
+			<p><a href="profil.php"><img class="photo_profil" src="imageprofile.png" alt="Photo de profil"></a></p>
+			<a href='deconnexion.php' class="boutonsite2">Déconnexion<a/> 
 			<div class="nom_prenom">
 				 <?php 
             echo $user['nom'];
@@ -104,9 +113,9 @@ if(isset($_SESSION['id'])){
 		<br />
 		<div class="commentaire_encadrement">
 			<p><?php echo $totalcommentaireID; ?> Commentaires</p>
-				<div class="like_encadrement">
-					<a href="like.php" class="like">J'aime</a>
-					<a href="dislike.php" class="dislike">J'aime pas</a>
+				<div class="like_encadremen">
+					<a href="php/action4.php?t=1" class="like">J'aime</a> (<?= $likes ?>)
+					<a href="php/action4.php?t=2" class="dislike">Je n'aime pas</a> (<?= $dislikes ?>)
 				</div>
 <?php while ($commentaires = $reqcomm->fetch()) { ?>
 

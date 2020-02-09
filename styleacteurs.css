@@ -161,6 +161,7 @@ form {
 }
 
 input[type=submit] {
+	border-radius: 5px;
     background-color: #FF0000;
     color: white;
     padding: 14px 20px;
@@ -176,6 +177,7 @@ input[type=submit]:hover {
 }
 
 .boutonsite {
+	border-radius: 5px;
 	background-color: #FF0000;
     color: white;
     padding: 14px 20px;
@@ -186,6 +188,24 @@ input[type=submit]:hover {
 }
 
 .boutonsite:hover {
+	background-color: white;
+    color: #B22222;
+    border: 1px solid #B22222;
+}
+
+.boutonsite2 {
+	border-radius: 5px;
+	margin-left: 15px;
+	background-color: #FF0000;
+    color: white;
+    padding: 14px 20px;
+    
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.boutonsite2:hover {
 	background-color: white;
     color: #B22222;
     border: 1px solid #B22222;

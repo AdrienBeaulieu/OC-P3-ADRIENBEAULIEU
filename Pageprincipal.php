@@ -23,7 +23,8 @@ if(isset($_SESSION['id']))
 		<header class="ntete">
 			
 			<p><a href="Pageprincipal.php"><img class="logo_header" src="logogbaf.png" alt="Logo GBAF"></a></p>
-			<p><a href="profil.php"><img class="photo_profil" src="imageprofile.png" alt="Photo de profil"></a></p> 
+			<p><a href="profil.php"><img class="photo_profil" src="imageprofile.png" alt="Photo de profil"></a></p>
+			<a href='deconnexion.php' class="boutonsite">Déconnexion<a/> 
 			<div class="nom_prenom">
 				 <?php 
             echo $user['nom'];
@@ -39,15 +40,15 @@ if(isset($_SESSION['id']))
 <!-- Section présentation -->
 	<div class="presentation">
 		<h1>Bienvenue sur le site du GBAF</h1>
-		<p id="text_presentation">Le Groupement Banque Assurance Français​ (GBAF) est une fédération  représentant les 6 grands groupes français</p>
+		<p id="text_presentation">Le Groupement Banque Assurance Français​ (GBAF) est une fédération  représentant les 6 grands groupes français.</p>
 		
 			<p id="logo_presentation_p"><img class="logo_presentation" src="logogbaf.png" alt="Logo GBAF"></p>
 		<p id="barre_presentation"></p>
 	</div>
 
 <!-- Section acteur -->
-	    <h2>Voici nos acteurs et partenaires</h2>
-		<p id="text_acteurs">Texte acteurs et partenaires</p>	
+	    <h2>Les acteurs et partenaires du GBAF</h2>
+		<p id="text_acteurs">Vous pouvez retrouver ici une liste des acteurs en qui nous avons confiance.</p>	
 
 		 <!-- Début section regrouprement Acteurs -->
 

@@ -4,6 +4,13 @@ session_start();
 $bdd = new PDO('mysql:host=127.0.0.1;dbname=espace_membre', 'root', '');
 setlocale(LC_TIME, 'fra_fra');
 
+	  $likes = $bdd->prepare('SELECT id FROM likes2');
+      $likes->execute(array());
+      $likes = $likes->rowCount();
+      $dislikes = $bdd->prepare('SELECT id FROM dislikes2');
+      $dislikes->execute(array());
+      $dislikes = $dislikes->rowCount();
+
 
 if(isset($_SESSION['id'])){
    $requser = $bdd->prepare("SELECT * FROM membres WHERE id = ?");
@@ -13,16 +20,17 @@ if(isset($_SESSION['id'])){
    $userid = $_SESSION['id'];
 
    $reqidcomment = $bdd->query("SELECT userid FROM commentsdsa");
-   $useridcomm = $reqidcomment->fetch();
+   $useridcommdsa = $reqidcomment->fetch();
+   $useridcommentaire = $useridcommdsa['userid'];
 
    $reqcomm = $bdd->query('SELECT * FROM commentsdsa');
 
-
+	
 	if(isset($_POST['submit_commentaire'])) {
 		$commentaire = htmlspecialchars($_POST['commentairedsa']);
 		$dates = strftime('%d/%m/%y');
 			if(isset($_POST['commentairedsa']) AND !empty($_POST['commentairedsa'])) {
-				if($_SESSION['id'] == $useridcomm['userid']) {
+				if($userid == $useridcommentaire) {
 					# code...
 				
 					 echo "Vous avez déjà écrit un commentaire !";
@@ -51,7 +59,8 @@ if(isset($_SESSION['id'])){
 		<header class="ntete">
 			
 			<p><a href="Pageprincipal.php"><img class="logo_header" src="logogbaf.png" alt="Logo GBAF"></a></p>
-			<p><a href="profil.php"><img class="photo_profil" src="imageprofile.png" alt="Photo de profil"></a></p> 
+			<p><a href="profil.php"><img class="photo_profil" src="imageprofile.png" alt="Photo de profil"></a></p>
+			<a href='deconnexion.php' class="boutonsite2">Déconnexion<a/> 
 			<div class="nom_prenom">
 				 <?php 
             echo $user['nom'];
@@ -96,9 +105,9 @@ if(isset($_SESSION['id'])){
 		<br />
 		<div class="commentaire_encadrement">
 			<p><?php echo $totalcommentaireID; ?> Commentaires</p>
-				<div class="like_encadrement">
-					<a href="like.php" class="like">J'aime</a>
-					<a href="dislike.php" class="dislike">J'aime pas</a>
+				<div class="like_encadremen">
+					<a href="php/action2.php?t=1" class="like">J'aime</a> (<?= $likes ?>)
+					<a href="php/action2.php?t=2" class="dislike">Je n'aime pas</a> (<?= $dislikes ?>)
 				</div>
 <?php while ($commentaires = $reqcomm->fetch()) { ?>
 

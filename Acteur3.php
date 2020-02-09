@@ -4,6 +4,14 @@ session_start();
 $bdd = new PDO('mysql:host=127.0.0.1;dbname=espace_membre', 'root', '');
 setlocale(LC_TIME, 'fra_fra');
 
+	$likes = $bdd->prepare('SELECT id FROM likes3');
+      $likes->execute(array());
+      $likes = $likes->rowCount();
+      $dislikes = $bdd->prepare('SELECT id FROM dislikes3');
+      $dislikes->execute(array());
+      $dislikes = $dislikes->rowCount();
+
+
 
 if(isset($_SESSION['id'])){
    $requser = $bdd->prepare("SELECT * FROM membres WHERE id = ?");
@@ -52,7 +60,8 @@ if(isset($_SESSION['id'])){
 		<header class="ntete">
 			
 			<p><a href="Pageprincipal.php"><img class="logo_header" src="logogbaf.png" alt="Logo GBAF"></a></p>
-			<p><a href="profil.php"><img class="photo_profil" src="imageprofile.png" alt="Photo de profil"></a></p> 
+			<p><a href="profil.php"><img class="photo_profil" src="imageprofile.png" alt="Photo de profil"></a></p>
+			<a href='deconnexion.php' class="boutonsite2">Déconnexion<a/> 
 			<div class="nom_prenom">
 				 <?php 
             echo $user['nom'];
@@ -74,12 +83,12 @@ if(isset($_SESSION['id'])){
 		<p>
 			Formation&co est une association française présente sur tout le territoire.<br />
             Nous proposons à des personnes issues de tout milieu de devenir entrepreneur grâce à un crédit et un accompagnement professionnel et personnalisé.<br />
-            Notre proposition :<br />
-            <ul>
-            <li>un financement jusqu’à 30 000€</li>
-            <li>un suivi personnalisé et gratuit</li>
-            <li>une lutte acharnée contre les freins sociétaux et les stéréotypes.</li>
-            </ul>
+            Notre proposition :<br /><br />
+            
+            Un financement jusqu’à 30 000€<br />
+            Un suivi personnalisé et gratuit<br />
+            Une lutte acharnée contre les freins sociétaux et les stéréotypes.<br /><br />
+            
 
             Le financement est possible, peu importe le métier : coiffeur, banquier, éleveur de chèvres… .<br />
             Nous collaborons avec des personnes talentueuses et motivées.<br />
@@ -104,9 +113,9 @@ if(isset($_SESSION['id'])){
 		<br />
 		<div class="commentaire_encadrement">
 			<p><?php echo $totalcommentaireID; ?> Commentaires</p>
-				<div class="like_encadrement">
-					<a href="like.php" class="like">J'aime</a>
-					<a href="dislike.php" class="dislike">J'aime pas</a>
+				<div class="like_encadremen">
+					<a href="php/action3.php?t=1" class="like">J'aime</a> (<?= $likes ?>)
+					<a href="php/action3.php?t=2" class="dislike">Je n'aime pas</a> (<?= $dislikes ?>)
 				</div>
 <?php while ($commentaires = $reqcomm->fetch()) { ?>
 
